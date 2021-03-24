@@ -20,21 +20,41 @@ const Tag = ({ text, icon }) => {
 
 const Combobox = () => {
   return (
-    <Box bg="#F0F7FC" p="1" borderRadius="base">
-      <Wrap>
-        <WrapItem>
-          <Tag text="ok@gmail.com" icon={<EmailIcon />} />
-        </WrapItem>
-        <WrapItem>
-          <Tag text="omar@gmail.com" icon={<EmailIcon />} />
-        </WrapItem>
-        <WrapItem>
-          <Tag text="Omar" icon={<Avatar size="xs" name="Omar" />} />
-        </WrapItem>
-        <WrapItem>
-          <Input variant="unstyled" placeholder="Search names or emails" />
-        </WrapItem>
-      </Wrap>
+    <Box>
+      <Box bg="#F0F7FC" p="1" borderRadius="base">
+        <Wrap align="center">
+          <WrapItem>
+            <Tag text="ok@gmail.com" icon={<EmailIcon />} />
+          </WrapItem>
+          <WrapItem>
+            <Tag text="omar@gmail.com" icon={<EmailIcon />} />
+          </WrapItem>
+          <WrapItem>
+            <Tag text="Omar" icon={<Avatar size="xs" name="Omar" />} />
+          </WrapItem>
+          <WrapItem>
+            <Input variant="unstyled" />
+          </WrapItem>
+        </Wrap>
+      </Box>
+      <Box bg="#F0F7FC" mt="1">
+        <Box p="3">
+          <Wrap align="center">
+            <WrapItem>
+              <Avatar size="xs" name="Tara" />
+            </WrapItem>
+            <WrapItem>Tara</WrapItem>
+          </Wrap>
+        </Box>
+        <Box p="3">
+          <Wrap align="center">
+            <WrapItem>
+              <EmailIcon />
+            </WrapItem>
+            <WrapItem>tar@gmail.com</WrapItem>
+          </Wrap>
+        </Box>
+      </Box>
     </Box>
   );
 };
