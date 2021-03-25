@@ -41,6 +41,7 @@ const Tag = ({ text, icon, onClose }: ITag) => {
 
 const Combobox: React.FC<ICombobox> = ({
   suggestions,
+  value,
   selected,
   onChange,
   onRemove,
@@ -69,6 +70,7 @@ const Combobox: React.FC<ICombobox> = ({
             <Input
               variant="unstyled"
               onChange={onChange}
+              value={value}
               ref={inputRef}
               size="lg"
             />

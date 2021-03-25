@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box, Text, Button, Center, HStack } from "@chakra-ui/react";
 
 import Combobox, { IItem } from "../components/combobox";
@@ -11,9 +11,9 @@ const Invite = () => {
   const [selected, setSelected] = useState<Array<IItem>>([]);
   const [searchValue, setSearchValue] = useState("");
 
-  const handleSearch = debounce((e: any) => {
+  const handleSearch = (e: any) => {
     setSearchValue(e.target.value);
-  }, 200);
+  };
 
   const handleSelect = (item: IItem) => {
     setSelected([...selected, item]);
@@ -28,23 +28,29 @@ const Invite = () => {
     setSelected(filtredItems);
   };
 
+  const buildSuggestions = useCallback(
+    debounce((search) => {
+      if (isEmail(search)) {
+        setUsers([
+          {
+            firstName: "",
+            lastName: "",
+            id: search,
+            email: search,
+          },
+        ]);
+      } else {
+        searchUser(search).then((data) => {
+          setUsers(data);
+        });
+      }
+    }, 200),
+    []
+  );
+
   useEffect(() => {
-    console.log("called");
-    if (isEmail(searchValue)) {
-      setUsers([
-        {
-          firstName: "",
-          lastName: "",
-          id: searchValue,
-          email: searchValue,
-        },
-      ]);
-    } else {
-      searchUser(searchValue).then((data) => {
-        setUsers(data);
-      });
-    }
-  }, [searchValue]);
+    buildSuggestions(searchValue);
+  }, [searchValue, buildSuggestions]);
 
   const suggestions = users.map(
     ({ firstName, email, id }): IItem => {
@@ -62,6 +68,7 @@ const Invite = () => {
       <HStack spacing="16px">
         <Center w="100%">
           <Combobox
+            value={searchValue}
             suggestions={suggestions}
             selected={selected}
             onChange={handleSearch}
