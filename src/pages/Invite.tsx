@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Text,
-  Wrap,
-  WrapItem,
-  Button,
-  Flex,
-  Center,
-  HStack,
-} from "@chakra-ui/react";
+import { Box, Text, Button, Center, HStack } from "@chakra-ui/react";
 
 import Combobox, { IItem } from "../components/combobox";
 import { searchUser, IUser } from "../api";
 import { isEmail } from "../utils";
+import debounce from "lodash/debounce";
 
 const Invite = () => {
   const [users, setUsers] = useState<Array<IUser>>([]);
   const [selected, setSelected] = useState<Array<IItem>>([]);
   const [searchValue, setSearchValue] = useState("");
 
-  const handleSearch = (e: any) => {
+  const handleSearch = debounce((e: any) => {
     setSearchValue(e.target.value);
-  };
+  }, 200);
 
   const handleSelect = (item: IItem) => {
     setSelected([...selected, item]);
@@ -37,6 +29,7 @@ const Invite = () => {
   };
 
   useEffect(() => {
+    console.log("called");
     if (isEmail(searchValue)) {
       setUsers([
         {
@@ -74,7 +67,6 @@ const Invite = () => {
             onChange={handleSearch}
             onRemove={handleRemove}
             onSelect={handleSelect}
-            value={searchValue}
           />
         </Center>
         <Center>
