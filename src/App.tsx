@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Center } from "@chakra-ui/react";
 import {
   Modal,
   ModalOverlay,
@@ -14,7 +14,7 @@ import InvitePage from "./pages/Invite";
 function App() {
   const [isOpen, setOpen] = useState(false);
   return (
-    <div>
+    <Box>
       <Button
         onClick={() => {
           setOpen(true);
@@ -24,14 +24,16 @@ function App() {
       </Button>
       <Modal isOpen={isOpen} onClose={() => setOpen(false)}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Invite members</ModalHeader>
+        <ModalContent p="8">
+          <ModalHeader>
+            <Center>Invite members</Center>
+          </ModalHeader>
           <ModalBody>
             <InvitePage />
           </ModalBody>
         </ModalContent>
       </Modal>
-    </div>
+    </Box>
   );
 }
 

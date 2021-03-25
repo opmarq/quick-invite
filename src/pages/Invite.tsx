@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Box, Text, Wrap, WrapItem, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Wrap,
+  WrapItem,
+  Button,
+  Flex,
+  Center,
+  HStack,
+} from "@chakra-ui/react";
 
 import Combobox, { IItem } from "../components/combobox";
 import { searchUser, IUser } from "../api";
@@ -45,8 +54,8 @@ const Invite = () => {
     <Box>
       <Text size="xl">Email invite</Text>
       <Text>Send members an email invitation to join this workspace.</Text>
-      <Wrap align="center">
-        <WrapItem>
+      <HStack spacing="16px">
+        <Center w="100%">
           <Combobox
             suggestions={suggestions}
             selected={selected}
@@ -55,11 +64,11 @@ const Invite = () => {
             onSelect={handleSelect}
             value={searchValue}
           />
-        </WrapItem>
-        <WrapItem>
+        </Center>
+        <Center>
           <Button>Invite</Button>
-        </WrapItem>
-      </Wrap>
+        </Center>
+      </HStack>
     </Box>
   );
 };

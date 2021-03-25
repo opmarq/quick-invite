@@ -49,7 +49,7 @@ const Combobox: React.FC<ICombobox> = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Box>
+    <Box w="100%">
       <Box bg="#F0F7FC" p="1" borderRadius="base">
         <Wrap align="center">
           {selected?.map((item) => {
@@ -71,6 +71,7 @@ const Combobox: React.FC<ICombobox> = ({
               onChange={onChange}
               value={value}
               ref={inputRef}
+              size="lg"
             />
           </WrapItem>
         </Wrap>
