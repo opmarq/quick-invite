@@ -38,7 +38,9 @@ const Tag = ({ text, icon, onClose }: ITag) => {
       <Wrap align="center">
         <WrapItem>{icon}</WrapItem>
         <WrapItem>
-          <Text color="brand.secondary">{text}</Text>
+          <Text fontSize="sm" color="brand.secondary">
+            {text}
+          </Text>
         </WrapItem>
         <WrapItem>
           <CloseIcon
