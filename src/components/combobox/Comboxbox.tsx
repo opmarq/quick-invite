@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useEffect, useRef } from "react";
-import { Box, Wrap, WrapItem } from "@chakra-ui/layout";
+import React, { ChangeEvent, useRef } from "react";
+import { Box, Wrap, WrapItem, Text } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/input";
 import { EmailIcon, CloseIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
@@ -27,12 +27,27 @@ interface ICombobox {
 
 const Tag = ({ text, icon, onClose }: ITag) => {
   return (
-    <Box bg="white" p="1" borderRadius="base" px="11px">
+    <Box
+      bg="brand.bgSecondary"
+      py="1"
+      px="3"
+      borderRadius="lg"
+      border="1px"
+      borderColor="brand.secondary"
+    >
       <Wrap align="center">
         <WrapItem>{icon}</WrapItem>
-        <WrapItem>{text}</WrapItem>
         <WrapItem>
-          <CloseIcon onClick={onClose} cursor="pointer" w="10px" h="10px" />
+          <Text color="brand.secondary">{text}</Text>
+        </WrapItem>
+        <WrapItem>
+          <CloseIcon
+            onClick={onClose}
+            cursor="pointer"
+            w="10px"
+            h="10px"
+            color="brand.secondary"
+          />
         </WrapItem>
       </Wrap>
     </Box>
@@ -51,14 +66,21 @@ const Combobox: React.FC<ICombobox> = ({
 
   return (
     <Box w="100%" position="relative">
-      <Box bg="#F0F7FC" p="1" borderRadius="base">
+      <Box
+        px="3"
+        py="2"
+        bg="brand.bgSecondary"
+        borderRadius="xl"
+        border="1px"
+        borderColor="#383C56"
+      >
         <Wrap align="center">
           {selected?.map((item) => {
             return (
               <WrapItem key={item.id}>
                 <Tag
                   text={item.text}
-                  icon={<EmailIcon />}
+                  icon={<EmailIcon color="brand.secondary" />}
                   onClose={() => {
                     onRemove(item);
                   }}
@@ -72,14 +94,17 @@ const Combobox: React.FC<ICombobox> = ({
               onChange={onChange}
               value={value}
               ref={inputRef}
-              size="lg"
+              color="white"
+              placeholder={
+                selected.length === 0 ? "Search names or emails..." : ""
+              }
             />
           </WrapItem>
         </Wrap>
       </Box>
       <Box position="absolute" w="100%">
         <Fade in={suggestions.length > 0}>
-          <Box bg="#F0F7FC" mt="1">
+          <Box bg="brand.bgSecondary" mt="1">
             {suggestions?.map((item) => {
               return (
                 <Box p="3" key={item.id}>
@@ -94,7 +119,9 @@ const Combobox: React.FC<ICombobox> = ({
                     <WrapItem>
                       <Avatar size="xs" name={item.text} />
                     </WrapItem>
-                    <WrapItem>{item.text}</WrapItem>
+                    <WrapItem>
+                      <Text color="brand.text">{item.text}</Text>
+                    </WrapItem>
                   </Wrap>
                 </Box>
               );

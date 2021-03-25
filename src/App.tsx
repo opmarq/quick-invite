@@ -24,9 +24,9 @@ function App() {
       </Button>
       <Modal isOpen={isOpen} onClose={() => setOpen(false)}>
         <ModalOverlay />
-        <ModalContent p="8">
+        <ModalContent px="6" py="8" bg="brand.bgPrimary">
           <ModalHeader>
-            <Center>Invite members</Center>
+            <Center color="brand.heading">Invite members</Center>
           </ModalHeader>
           <ModalBody>
             <InvitePage />
