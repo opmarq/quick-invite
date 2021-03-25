@@ -12,6 +12,7 @@ import {
 
 import Combobox, { IItem } from "../components/combobox";
 import { searchUser, IUser } from "../api";
+import { isEmail } from "../utils";
 
 const Invite = () => {
   const [users, setUsers] = useState<Array<IUser>>([]);
@@ -36,16 +37,27 @@ const Invite = () => {
   };
 
   useEffect(() => {
-    searchUser(searchValue).then((data) => {
-      setUsers(data);
-    });
+    if (isEmail(searchValue)) {
+      setUsers([
+        {
+          firstName: "",
+          lastName: "",
+          id: searchValue,
+          email: searchValue,
+        },
+      ]);
+    } else {
+      searchUser(searchValue).then((data) => {
+        setUsers(data);
+      });
+    }
   }, [searchValue]);
 
   const suggestions = users.map(
-    ({ firstName, id }): IItem => {
+    ({ firstName, email, id }): IItem => {
       return {
         id,
-        text: firstName,
+        text: firstName || email,
       };
     }
   );
@@ -66,7 +78,7 @@ const Invite = () => {
           />
         </Center>
         <Center>
-          <Button>Invite</Button>
+          <Button disabled={selected.length === 0}>Invite</Button>
         </Center>
       </HStack>
     </Box>
