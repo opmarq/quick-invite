@@ -11,7 +11,7 @@ Invite by email or names
 * Suggest email selection when the input is a valid email
 * AutoFocus when selecting/removing an item
 * Change Invite Button to loading state when the invitation event is going
-
+* Responsive 
 
 ## Tech stack
 
