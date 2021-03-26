@@ -8,7 +8,7 @@ import Tag from "./Tag";
 export interface IItem {
   id: string;
   text: string;
-  icon: ReactElement;
+  icon?: ReactElement;
 }
 
 interface ICombobox {

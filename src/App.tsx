@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, Center } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import {
   Modal,
   ModalOverlay,
@@ -9,18 +9,17 @@ import {
 } from "@chakra-ui/react";
 
 import InvitePage from "./pages/Invite";
+import FinishPage from "./pages/Finish";
 
 function App() {
   const [isOpen, setOpen] = useState(false);
   return (
-    <Box>
-      <Button
-        onClick={() => {
+    <Box p="3">
+      <FinishPage
+        onInvite={() => {
           setOpen(true);
         }}
-      >
-        Invite Teammates
-      </Button>
+      />
       <Modal isOpen={isOpen} onClose={() => setOpen(false)} size="lg">
         <ModalOverlay />
         <ModalContent px="6" py="10" bg="brand.bgPrimary">
