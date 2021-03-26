@@ -9,8 +9,10 @@ import {
   ListIcon,
   Wrap,
   WrapItem,
+  Icon,
 } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
+import { GiPartyPopper } from "react-icons/gi";
 
 import { StateContext } from "../providers/stateProvider";
 interface IFinish {
@@ -27,7 +29,8 @@ const Finish: React.FC<IFinish> = ({ onInvite }) => {
       <Box bg="brand.bgPrimary" w="2xl" px="6" py="10" borderRadius="lg">
         <Center>
           <Text color="green.300" mb="6">
-            You have successfuly created a meeting <CheckCircleIcon />
+            <Icon w="8" h="8" as={GiPartyPopper} /> You have successfuly created
+            a meeting
           </Text>
         </Center>
         <Box>
