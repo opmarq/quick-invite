@@ -6,7 +6,6 @@ import {
   ModalContent,
   ModalBody,
   ModalHeader,
-  Text,
 } from "@chakra-ui/react";
 
 import InvitePage from "./pages/Invite";
@@ -22,9 +21,9 @@ function App() {
       >
         Invite Teammates
       </Button>
-      <Modal isOpen={isOpen} onClose={() => setOpen(false)}>
+      <Modal isOpen={isOpen} onClose={() => setOpen(false)} size="lg">
         <ModalOverlay />
-        <ModalContent px="6" py="8" bg="brand.bgPrimary">
+        <ModalContent px="6" py="10" bg="brand.bgPrimary">
           <ModalHeader>
             <Center color="brand.heading">Invite members</Center>
           </ModalHeader>
