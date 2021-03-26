@@ -27,7 +27,7 @@ const Finish: React.FC<IFinish> = ({ onInvite }) => {
       <Box bg="brand.bgPrimary" w="2xl" px="6" py="10" borderRadius="lg">
         <Center>
           <Text color="green.300" mb="6">
-            You have successfuly create a meeting <CheckCircleIcon />
+            You have successfuly created a meeting <CheckCircleIcon />
           </Text>
         </Center>
         <Box>

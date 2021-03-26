@@ -3,7 +3,7 @@ import { Box, Wrap, WrapItem, Text, Spinner, Center } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/input";
 import { Fade } from "@chakra-ui/transition";
 
-import Tag from "./Tag";
+import Tag from "../Tag";
 
 export interface IItem {
   id: string;
@@ -69,6 +69,7 @@ const Combobox: React.FC<ICombobox> = ({
   return (
     <Box w="100%" position="relative">
       <Box
+        aria-label="selections"
         px="1"
         py="1"
         bg="brand.bgSecondary"
@@ -115,6 +116,7 @@ const Combobox: React.FC<ICombobox> = ({
           shadow="lg"
           mt="1"
           bg="brand.bgSecondary"
+          aria-label="suggestions"
         >
           {isLoading ? renderSpiner() : renderSuggestions(suggestions)}
         </Box>

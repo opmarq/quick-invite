@@ -17,6 +17,7 @@ const Tag = ({ text, icon, onClose }: ITag) => {
       borderRadius="lg"
       border="1px"
       borderColor="brand.secondary"
+      aria-label="tag"
     >
       <Wrap align="center">
         {icon && <WrapItem>{icon}</WrapItem>}
@@ -32,6 +33,7 @@ const Tag = ({ text, icon, onClose }: ITag) => {
             w="10px"
             h="10px"
             color="brand.secondary"
+            aria-label="close"
           />
         </WrapItem>
       </Wrap>

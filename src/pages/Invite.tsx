@@ -3,7 +3,7 @@ import { Box, Text, Button, Center, HStack, Avatar } from "@chakra-ui/react";
 import debounce from "lodash/debounce";
 import { EmailIcon } from "@chakra-ui/icons";
 
-import Combobox, { IItem } from "../components/Comboxbox";
+import Combobox, { IItem } from "../components/Combobox";
 import { searchUser, IUser, sendInvitation } from "../api";
 import { isEmail } from "../utils";
 import { StateContext } from "../providers/stateProvider";
@@ -81,7 +81,12 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
         id,
         text: firstName || email,
         icon: firstName ? (
-          <Avatar name={firstName} size="xs" />
+          <Avatar
+            name={firstName}
+            size="xs"
+            bg="brand.secondary"
+            color="white"
+          />
         ) : (
           <EmailIcon w="5" h="5" color="brand.secondary" />
         ),
