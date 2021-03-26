@@ -69,8 +69,8 @@ const Combobox: React.FC<ICombobox> = ({
   return (
     <Box w="100%" position="relative">
       <Box
-        px="3"
-        py="2"
+        px="1"
+        py="1"
         bg="brand.bgSecondary"
         borderRadius="xl"
         border="1px"
@@ -95,6 +95,7 @@ const Combobox: React.FC<ICombobox> = ({
           })}
           <WrapItem>
             <Input
+              p="1"
               variant="unstyled"
               onChange={onChange}
               value={value}

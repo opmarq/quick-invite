@@ -12,6 +12,18 @@ const ErrorRegex = /error/gi
 
 const Users = [
   {
+    firstName: 'Tima',
+    lastName: 'tom',
+    id: (Math.random() * 1000).toString(),
+    email: 'tima@mail.com'
+  },
+  {
+    firstName: 'Tata',
+    lastName: 'Toto',
+    id: (Math.random() * 1000).toString(),
+    email: 'tata@gmail.com'
+  },
+  {
     firstName: 'Jhone',
     lastName: 'doe',
     id: (Math.random() * 1000).toString(),

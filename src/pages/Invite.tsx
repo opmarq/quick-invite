@@ -91,7 +91,7 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
 
   return (
     <Box>
-      <Text color="brand.heading" size="xl" mb="4">
+      <Text color="brand.heading" fontSize="md" mb="4">
         Email invite
       </Text>
       <Text color="brand.text" mb="4">

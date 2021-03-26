@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Center, Text } from "@chakra-ui/react";
 import {
   Modal,
   ModalOverlay,
@@ -24,7 +24,9 @@ function App() {
         <ModalOverlay />
         <ModalContent px="6" py="10" bg="brand.bgPrimary">
           <ModalHeader>
-            <Center color="brand.heading">Invite members</Center>
+            <Center color="brand.heading">
+              <Text fontSize="x-large">Invite members</Text>
+            </Center>
           </ModalHeader>
           <ModalBody>
             <InvitePage
