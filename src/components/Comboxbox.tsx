@@ -1,7 +1,6 @@
 import React, { ReactElement, useRef } from "react";
 import { Box, Wrap, WrapItem, Text, Spinner, Center } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/input";
-import { Avatar } from "@chakra-ui/avatar";
 import { Fade } from "@chakra-ui/transition";
 
 import Tag from "./Tag";
@@ -74,6 +73,9 @@ const Combobox: React.FC<ICombobox> = ({
         borderRadius="xl"
         border="1px"
         borderColor="#383C56"
+        onClick={() => {
+          inputRef.current?.focus();
+        }}
       >
         <Wrap align="center">
           {selected.map((item) => {
