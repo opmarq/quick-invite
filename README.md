@@ -2,8 +2,6 @@
 
 Invite by email or names
 
-![image](https://user-images.githubusercontent.com/6263443/112689348-711fdd00-8e7a-11eb-9bd2-36cf6fd8905e.png)
-
 ## Features
 
 * Fetch users and suggest them for selection
