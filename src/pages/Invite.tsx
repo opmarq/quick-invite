@@ -102,7 +102,7 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
       <Text color="brand.text" mb="4">
         Send members an email invitation to join this workspace.
       </Text>
-      <HStack spacing="6">
+      <HStack spacing="4">
         <Center w="100%">
           <Combobox
             isLoading={isLoading}
