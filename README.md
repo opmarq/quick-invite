@@ -8,7 +8,7 @@ React + TypeScript + Chakra UI +  ☕️
 
 ## Dev guide 
 
-* Start project `npm run start`
-* Build project `npm run build`
+* Start the project `npm run start`
+* Build the project `npm run build`
 * Run tests `npm run test`
-* Deploy npm `run deploy`
+* Deploy the project npm `run deploy`
