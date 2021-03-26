@@ -1,4 +1,6 @@
-export default {
+import { Button } from "./components/button";
+
+const theme = {
   fonts: {
     body: "Lato, sans-serif",
     heading: "Lato, serif",
@@ -17,4 +19,9 @@ export default {
       text: "#8C9DB5",
     },
   },
+  components: {
+    Button,
+  },
 };
+
+export default theme;

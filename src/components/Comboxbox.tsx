@@ -46,15 +46,17 @@ const Combobox: React.FC<ICombobox> = ({
     return suggestions
       .filter(({ id }) => !selected.some((item) => item.id === id))
       .map((item) => (
-        <Box p="3" key={item.id}>
-          <Wrap
-            align="center"
-            cursor="pointer"
-            onClick={() => {
-              onSelect(item);
-              inputRef.current?.focus();
-            }}
-          >
+        <Box
+          key={item.id}
+          borderBottom="1px"
+          p="3"
+          cursor="pointer"
+          onClick={() => {
+            onSelect(item);
+            inputRef.current?.focus();
+          }}
+        >
+          <Wrap align="center">
             <WrapItem>{item.icon}</WrapItem>
             <WrapItem>
               <Text color="brand.text">{item.text}</Text>

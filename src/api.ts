@@ -58,3 +58,8 @@ export const searchUser = async (input: string): Promise<IUser[]> => {
     return false
   })
 }
+
+export const sendInvitation = async (ids: Array<string>): Promise<string[]> => {
+  await delay(200 + Math.random() * 200);
+  return ids;
+}

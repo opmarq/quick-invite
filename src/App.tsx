@@ -27,7 +27,11 @@ function App() {
             <Center color="brand.heading">Invite members</Center>
           </ModalHeader>
           <ModalBody>
-            <InvitePage />
+            <InvitePage
+              onInviteDone={() => {
+                setOpen(false);
+              }}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>

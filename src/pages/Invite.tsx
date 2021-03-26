@@ -1,17 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Box, Text, Button, Center, HStack, Avatar } from "@chakra-ui/react";
 import debounce from "lodash/debounce";
 import { EmailIcon } from "@chakra-ui/icons";
 
 import Combobox, { IItem } from "../components/Comboxbox";
-import { searchUser, IUser } from "../api";
+import { searchUser, IUser, sendInvitation } from "../api";
 import { isEmail } from "../utils";
+import { StateContext } from "../providers/stateProvider";
 
-const Invite = () => {
+const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
   const [users, setUsers] = useState<Array<IUser>>([]);
   const [selected, setSelected] = useState<Array<IItem>>([]);
   const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isInviting, setInviting] = useState(false);
+  const { dispatch } = useContext(StateContext);
 
   const handleSearch = (e: any) => {
     setSearchValue(e.target.value);
@@ -28,6 +31,18 @@ const Invite = () => {
       return selectedItem.id !== item.id;
     });
     setSelected(filtredItems);
+  };
+
+  const handleSendInvitation = () => {
+    const ids = selected.map(({ text }) => text);
+    setInviting(true);
+    sendInvitation(ids).then((invites) => {
+      dispatch({
+        invites,
+      });
+      setInviting(false);
+      onInviteDone();
+    });
   };
 
   const buildSuggestions = useCallback(
@@ -68,7 +83,7 @@ const Invite = () => {
         icon: firstName ? (
           <Avatar name={firstName} size="xs" />
         ) : (
-          <EmailIcon w="5" color="brand.secondary" />
+          <EmailIcon w="5" h="5" color="brand.secondary" />
         ),
       };
     }
@@ -95,7 +110,12 @@ const Invite = () => {
           />
         </Center>
         <Center>
-          <Button disabled={selected.length === 0} borderRadius="lg">
+          <Button
+            disabled={selected.length === 0}
+            borderRadius="lg"
+            onClick={handleSendInvitation}
+            isLoading={isInviting}
+          >
             Invite
           </Button>
         </Center>
