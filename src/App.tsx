@@ -8,7 +8,7 @@ import {
   ModalHeader,
 } from "@chakra-ui/react";
 
-import InvitePage from "./pages/Invite";
+import InvitePage from "./pages/Invite/";
 import FinishPage from "./pages/Finish";
 
 function App() {

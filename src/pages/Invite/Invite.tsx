@@ -1,20 +1,35 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { Box, Text, Button, Center, HStack, Avatar } from "@chakra-ui/react";
 import debounce from "lodash/debounce";
 import { EmailIcon } from "@chakra-ui/icons";
 
-import Combobox, { IItem } from "../components/Combobox";
-import { searchUser, IUser, sendInvitation } from "../api";
-import { isEmail } from "../utils";
-import { StateContext } from "../providers/stateProvider";
+import Combobox, { IItem } from "../../components/Combobox";
+import { searchUser, sendInvitation } from "../../api";
+import { isEmail } from "../../utils";
+import { StateContext } from "../../providers/stateProvider";
+import {
+  inviteReducer,
+  initialState as inviteInitialstate,
+  SET_USERS,
+  CLEAR_USERS,
+  SET_ERROR,
+  FETCH_USERS,
+} from "./InviteDuck";
 
 const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
-  const [users, setUsers] = useState<Array<IUser>>([]);
+  const [{ users, errorMessage, isLoading }, inviteDispatch] = useReducer(
+    inviteReducer,
+    inviteInitialstate
+  );
   const [selected, setSelected] = useState<Array<IItem>>([]);
   const [searchValue, setSearchValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [isInviting, setInviting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const { dispatch } = useContext(StateContext);
 
   const handleSearch = (e: any) => {
@@ -23,8 +38,8 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
 
   const handleSelect = (item: IItem) => {
     setSelected([...selected, item]);
-    setUsers([]);
     setSearchValue("");
+    inviteDispatch({ type: CLEAR_USERS });
   };
 
   const handleRemove = (item: IItem) => {
@@ -49,25 +64,32 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
   const buildSuggestions = useCallback(
     debounce(async (search) => {
       if (isEmail(search)) {
-        setUsers([
-          {
-            firstName: "",
-            lastName: "",
-            id: search,
-            email: search,
-          },
-        ]);
-        setErrorMessage("");
+        inviteDispatch({
+          type: SET_USERS,
+          payload: [
+            {
+              firstName: "",
+              lastName: "",
+              id: search,
+              email: search,
+            },
+          ],
+        });
       } else {
-        setIsLoading(true);
+        inviteDispatch({
+          type: FETCH_USERS,
+        });
         try {
           const data = await searchUser(search);
-          setUsers(data);
-          setIsLoading(false);
-          setErrorMessage("");
+          inviteDispatch({
+            type: SET_USERS,
+            payload: data,
+          });
         } catch (e) {
-          setIsLoading(false);
-          setErrorMessage(e.message);
+          inviteDispatch({
+            type: SET_ERROR,
+            payload: e.message,
+          });
         }
       }
     }, 200),
@@ -76,7 +98,7 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
 
   useEffect(() => {
     if (!searchValue) {
-      setUsers([]);
+      inviteDispatch({ type: CLEAR_USERS });
     } else {
       buildSuggestions(searchValue);
     }
