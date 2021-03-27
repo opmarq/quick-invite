@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/quick-invite/static/js/main.7824e7b3.chunk.js",
-    "main.js.map": "/quick-invite/static/js/main.7824e7b3.chunk.js.map",
+    "main.js": "/quick-invite/static/js/main.8f6ed31c.chunk.js",
+    "main.js.map": "/quick-invite/static/js/main.8f6ed31c.chunk.js.map",
     "runtime-main.js": "/quick-invite/static/js/runtime-main.8c0762ba.js",
     "runtime-main.js.map": "/quick-invite/static/js/runtime-main.8c0762ba.js.map",
-    "static/js/2.e522bced.chunk.js": "/quick-invite/static/js/2.e522bced.chunk.js",
-    "static/js/2.e522bced.chunk.js.map": "/quick-invite/static/js/2.e522bced.chunk.js.map",
+    "static/js/2.36f7409a.chunk.js": "/quick-invite/static/js/2.36f7409a.chunk.js",
+    "static/js/2.36f7409a.chunk.js.map": "/quick-invite/static/js/2.36f7409a.chunk.js.map",
     "index.html": "/quick-invite/index.html",
-    "static/js/2.e522bced.chunk.js.LICENSE.txt": "/quick-invite/static/js/2.e522bced.chunk.js.LICENSE.txt"
+    "static/js/2.36f7409a.chunk.js.LICENSE.txt": "/quick-invite/static/js/2.36f7409a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8c0762ba.js",
-    "static/js/2.e522bced.chunk.js",
-    "static/js/main.7824e7b3.chunk.js"
+    "static/js/2.36f7409a.chunk.js",
+    "static/js/main.8f6ed31c.chunk.js"
   ]
 }
