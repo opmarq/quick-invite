@@ -10,6 +10,7 @@ Invite by email or names
 * AutoFocus when selecting/removing an item
 * Change Invite Button to loading state when the invitation event is going
 * Responsive 
+* Display helper & error message
 
 ## Tech stack
 
