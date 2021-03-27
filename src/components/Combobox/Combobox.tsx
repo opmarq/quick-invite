@@ -16,6 +16,7 @@ interface ICombobox {
   selected: Array<IItem>;
   value: string;
   isLoading: boolean;
+  helperText?: string;
   onChange: (e: any) => void;
   onRemove: (item: IItem) => void;
   onSelect: (item: IItem) => void;
@@ -28,6 +29,7 @@ const Combobox: React.FC<ICombobox> = ({
   onChange,
   onRemove,
   onSelect,
+  helperText,
   isLoading = false,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -109,6 +111,11 @@ const Combobox: React.FC<ICombobox> = ({
           </WrapItem>
         </Wrap>
       </Box>
+      {helperText && (
+        <Text color="red.600" fontSize="sm">
+          {helperText}
+        </Text>
+      )}
       <Fade in={isLoading || suggestions.length > 0}>
         <Box
           position="absolute"

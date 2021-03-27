@@ -14,6 +14,7 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
   const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isInviting, setInviting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { dispatch } = useContext(StateContext);
 
   const handleSearch = (e: any) => {
@@ -46,7 +47,7 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
   };
 
   const buildSuggestions = useCallback(
-    debounce((search) => {
+    debounce(async (search) => {
       if (isEmail(search)) {
         setUsers([
           {
@@ -56,12 +57,18 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
             email: search,
           },
         ]);
+        setErrorMessage("");
       } else {
         setIsLoading(true);
-        searchUser(search).then((data) => {
+        try {
+          const data = await searchUser(search);
           setUsers(data);
           setIsLoading(false);
-        });
+          setErrorMessage("");
+        } catch (e) {
+          setIsLoading(false);
+          setErrorMessage(e.message);
+        }
       }
     }, 200),
     []
@@ -112,6 +119,7 @@ const Invite = ({ onInviteDone }: { onInviteDone: any }) => {
             onChange={handleSearch}
             onRemove={handleRemove}
             onSelect={handleSelect}
+            helperText={errorMessage}
           />
         </Center>
         <Center>
