@@ -38,90 +38,108 @@ beforeEach(() => {
   onRemove = jest.fn();
 });
 
-test("render Comboxbox with selected item", () => {
-  render(
-    <Combobox
-      suggestions={[]}
-      selected={selected}
-      onChange={onChange}
-      value={value}
-      onSelect={onSelect}
-      onRemove={onRemove}
-      isLoading={false}
-    />
-  );
-  const element = screen.getByText(/Omar/i);
-  expect(element).toBeInTheDocument();
-});
-
-test("render Comboxbox suggestions list without selected one", () => {
-  render(
-    <Combobox
-      suggestions={suggestions}
-      selected={selected}
-      onChange={onChange}
-      value={value}
-      onSelect={onSelect}
-      onRemove={onRemove}
-      isLoading={false}
-    />
-  );
-
-  const selections = screen.getByLabelText(/selections/i);
-  const selectedElement = getByText(selections, /Omar/);
-  expect(selectedElement).toBeInTheDocument();
-
-  const suggestionsElement = screen.getByLabelText(/suggestions/);
-  const suggestedElement = getByText(suggestionsElement, /Chajia/);
-  expect(suggestedElement).toBeInTheDocument();
-
-  expect(queryByText(suggestionsElement, /Omar/)).toBeNull();
-});
-
-test("Select Combobox suggested items", () => {
-  render(
-    <Combobox
-      suggestions={suggestions}
-      selected={selected}
-      onChange={onChange}
-      value={value}
-      onSelect={onSelect}
-      onRemove={onRemove}
-      isLoading={false}
-    />
-  );
-
-  const suggestionsElement = screen.getByLabelText(/suggestions/);
-  const suggestedElement = getByText(suggestionsElement, /Chajia/);
-  fireEvent.click(suggestedElement);
-
-  expect(onSelect).toBeCalledWith({
-    id: "2",
-    text: "Chajia",
+describe("Combobox", () => {
+  test("Display helper message", () => {
+    render(
+      <Combobox
+        suggestions={[]}
+        selected={selected}
+        onChange={onChange}
+        value={value}
+        onSelect={onSelect}
+        onRemove={onRemove}
+        isLoading={false}
+        helperText="there is an error"
+      />
+    );
+    const element = screen.getByText(/there is an error/i);
+    expect(element).toBeInTheDocument();
   });
-});
+  test("render Comboxbox with selected item", () => {
+    render(
+      <Combobox
+        suggestions={[]}
+        selected={selected}
+        onChange={onChange}
+        value={value}
+        onSelect={onSelect}
+        onRemove={onRemove}
+        isLoading={false}
+      />
+    );
+    const element = screen.getByText(/Omar/i);
+    expect(element).toBeInTheDocument();
+  });
 
-test("Remove selected item from Combobox", () => {
-  render(
-    <Combobox
-      suggestions={suggestions}
-      selected={selected}
-      onChange={onChange}
-      value={value}
-      onSelect={onSelect}
-      onRemove={onRemove}
-      isLoading={false}
-    />
-  );
+  test("render Comboxbox suggestions list without selected one", () => {
+    render(
+      <Combobox
+        suggestions={suggestions}
+        selected={selected}
+        onChange={onChange}
+        value={value}
+        onSelect={onSelect}
+        onRemove={onRemove}
+        isLoading={false}
+      />
+    );
 
-  const selections = screen.getByLabelText(/selections/i);
-  const selectedElement = getByText(selections, /Omar/).closest(
-    "[aria-label='tag']"
-  ) as HTMLElement;
-  const closeElement = getByLabelText(selectedElement, /close/);
-  fireEvent.click(closeElement);
-  expect(onRemove).toBeCalledWith({
-    id: "1",
-    text: "Omar",
+    const selections = screen.getByLabelText(/selections/i);
+    const selectedElement = getByText(selections, /Omar/);
+    expect(selectedElement).toBeInTheDocument();
+
+    const suggestionsElement = screen.getByLabelText(/suggestions/);
+    const suggestedElement = getByText(suggestionsElement, /Chajia/);
+    expect(suggestedElement).toBeInTheDocument();
+
+    expect(queryByText(suggestionsElement, /Omar/)).toBeNull();
+  });
+
+  test("Select Combobox suggested items", () => {
+    render(
+      <Combobox
+        suggestions={suggestions}
+        selected={selected}
+        onChange={onChange}
+        value={value}
+        onSelect={onSelect}
+        onRemove={onRemove}
+        isLoading={false}
+      />
+    );
+
+    const suggestionsElement = screen.getByLabelText(/suggestions/);
+    const suggestedElement = getByText(suggestionsElement, /Chajia/);
+    fireEvent.click(suggestedElement);
+
+    expect(onSelect).toBeCalledWith({
+      id: "2",
+      text: "Chajia",
+    });
+  });
+
+  test("Remove selected item from Combobox", () => {
+    render(
+      <Combobox
+        suggestions={suggestions}
+        selected={selected}
+        onChange={onChange}
+        value={value}
+        onSelect={onSelect}
+        onRemove={onRemove}
+        isLoading={false}
+      />
+    );
+
+    const selections = screen.getByLabelText(/selections/i);
+    const selectedElement = getByText(selections, /Omar/).closest(
+      "[aria-label='tag']"
+    ) as HTMLElement;
+    const closeElement = getByLabelText(selectedElement, /close/);
+    fireEvent.click(closeElement);
+    expect(onRemove).toBeCalledWith({
+      id: "1",
+      text: "Omar",
+    });
   });
 });
