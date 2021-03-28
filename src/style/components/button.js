@@ -14,7 +14,10 @@ export const Button = {
       bg: "#2C54EA",
       color: "white",
       _hover: {
-        bg: "#2D4392",
+        bg: "#202437",
+      },
+      _disabled: {
+        color: "black",
       },
     },
   },
